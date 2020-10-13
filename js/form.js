@@ -15,26 +15,26 @@ class Form {
     display() {
         var title= createElement("h2");
         title.html("Car Racing Game");
-        title.position(130,0);
+        title.position(displayWidth/2 - 40,0);
         
         
-        this.button.position(250,200);
-        this.input.position(130,160);
+        this.button.position(displayWidth/2 - 40,displayHeight/2 + 40);
+        this.input.position(displayWidth/2 - 40,displayHeight/2 - 40);
 
         this.button.mousePressed(()=>{
             this.button.hide();
             this.input.hide();
 
             player.name = this.input.value();
-            console.log(playerCount);
             playerCount++;
+            player.index=playerCount;
 
-            player.update(player.name);
+            player.update();
             player.updateCount(playerCount);
 
            
             this.greeting.html("Hello "+player.name);
-            this.greeting.position(130,160);
+            this.greeting.position(displayWidth/2 - 40,displayHeight/2 - 40);
             
         });
     }
