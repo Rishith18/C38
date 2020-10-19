@@ -40,7 +40,7 @@ class Game{
         form.hide();
         Player.getPlayerInfo();
 
-        if (player.distance > 2000) {
+        if (player.distance > 4500) {
             gameState = 2;
         }
 
@@ -56,12 +56,18 @@ class Game{
                 y = displayHeight - allPlayers[plr].distance;
                 cars[index-1].x = x;
                 cars[index-1].y = y;
-
+                
                 if (index === player.index) {
-                    cars[index - 1].shapeColor = "red";
+                    stroke("red");
+                    fill("red");
+                    
                     camera.position.x = displayWidth/2;
                     camera.position.y = cars[index - 1].y;
+                } else {
+                    stroke("black");
+                    fill("black");
                 }
+                text(allPlayers[plr].name,x-20,y+70);
             }
         }
         if (keyIsDown(UP_ARROW) && player.index !== null) {
