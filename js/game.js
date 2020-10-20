@@ -17,7 +17,7 @@ class Game{
     
     async start() {
         if (gameState === 0) {
-            player = new Player()
+            player = new Player();
             var playerCountRef = await database.ref("playerCount").once("value");
             if (playerCountRef.exists()) {
                 playerCount = playerCountRef.val();
@@ -35,13 +35,17 @@ class Game{
         car3.addImage(car3Image);
         car4.addImage(car4Image);
         cars = [car1,car2,car3,car4]
+
     }
     play() {
         form.hide();
         Player.getPlayerInfo();
+        player.getCarsAtEnd();
 
         if (player.distance > 4500) {
             gameState = 2;
+            player.rank++;
+            Player.updateCarsAtEnd(player.rank);
         }
 
         if (allPlayers !== undefined) {
@@ -79,5 +83,11 @@ class Game{
 
     end() {
         form.gameOver.show();
+        console.log(player.rank);
+        form.medal.html(player.rank);
+        form.medal.show();
+        
+
+        drawSprites();
     }
 }

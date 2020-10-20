@@ -6,6 +6,7 @@ var playerCount;
 var allPlayers;
 var distance=0;
 var car1Image, car2Image, car3Image, car4Image, trackImage, groundImage
+var first, second, third;
 
 function preload() {
     car1Image = loadImage("images/car1.png");
@@ -22,10 +23,13 @@ function setup(){
     game = new Game();
     game.getState();
     game.start();
-    
+
+    second = createSprite(displayWidth/2-137.5,-displayHeight/4,75,150);
+    third = createSprite(displayWidth/2+137.5,-displayHeight/4,75,100);
 }
 
 function draw(){
+    
     if (playerCount === 4) {
         game.update(1);
     }
@@ -36,6 +40,7 @@ function draw(){
     if (gameState === 2) {
         clear();
         game.end();
+        drawSprites();
     }
     
 }
